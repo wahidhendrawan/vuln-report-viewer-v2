@@ -14,13 +14,19 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get install -y nodejs
 
 WORKDIR /var/www/html
-COPY . /var/www/html
+
+# Install Laravel langsung di dalam container
+RUN composer create-project laravel/laravel .
+
+# Copy controller, routes, views, css, js dari host (override Laravel default)
+COPY app/ /var/www/html/app/
+COPY routes/web.php /var/www/html/routes/web.php
+COPY resources/views/ /var/www/html/resources/views/
+COPY public/css/ /var/www/html/public/css/
+COPY public/js/ /var/www/html/public/js/
 
 # Pastikan folder Laravel ada
 RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache
-
-# Install Laravel dependencies (jika composer.json ada)
-RUN composer install || true
 
 # Set permission
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache

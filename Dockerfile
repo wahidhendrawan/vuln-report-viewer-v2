@@ -15,20 +15,17 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
 
 WORKDIR /var/www/html
 
-# Step 1: install Laravel ke container (fresh)
+# Install Laravel ke container
 RUN composer create-project laravel/laravel .
 
-# Step 2: copy custom code (override file bawaan Laravel)
+# Copy file tambahan
 COPY app/Http/Controllers/ /var/www/html/app/Http/Controllers/
 COPY routes/web.php /var/www/html/routes/web.php
 COPY resources/views/ /var/www/html/resources/views/
 COPY public/css/ /var/www/html/public/css/
 COPY public/js/ /var/www/html/public/js/
 
-# Pastikan folder Laravel ada
 RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache
-
-# Set permission
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 CMD ["php-fpm"]

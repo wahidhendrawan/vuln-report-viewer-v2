@@ -1,0 +1,21 @@
+{
+  "scan_summary": {
+    "scanned_at": "2025-08-27T10:00:00Z",
+    "scanner": "Demo Scanner",
+    "target": "example.com"
+  },
+  "vulnerabilities": [
+    {
+      "id": 1,
+      "type": "SQL Injection",
+      "severity": "High",
+      "details": "Unsanitized input in login form."
+    },
+    {
+      "id": 2,
+      "type": "XSS",
+      "severity": "Medium",
+      "details": "Reflected XSS on search page."
+    }
+  ]
+}

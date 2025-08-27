@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 data: {
                     labels: ['Critical','High','Medium','Low','Info'],
                     datasets: [{
-                        data: [1,2,3,4,5], // ganti dengan data dari JSON
+                        data: [1,2,3,4,5], // ganti pakai data JSON
                         backgroundColor: ['#c0392b','#e67e22','#f1c40f','#27ae60','#3498db']
                     }]
                 }

@@ -12,7 +12,7 @@ services:
     image: nginx:alpine
     container_name: vulnreport-nginx
     ports:
-      - "8000:80"
+      - "8000:80"   # publish frontend ke port 8000
     volumes:
       - ./:/var/www/html
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro

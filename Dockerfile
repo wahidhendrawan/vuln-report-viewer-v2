@@ -25,7 +25,10 @@ COPY resources/views/ /var/www/html/resources/views/
 COPY public/css/ /var/www/html/public/css/
 COPY public/js/ /var/www/html/public/js/
 
-RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# Fix permission storage & cache
+RUN mkdir -p /var/www/html/storage/framework/sessions \
+    && mkdir -p /var/www/html/storage/framework/views \
+    && mkdir -p /var/www/html/storage/framework/cache \
+    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 CMD ["php-fpm"]

@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vulnreport-app
+    volumes:
+      - ./:/var/www/html
+    working_dir: /var/www/html
+    networks:
+      - vulnreport
+
+  nginx:
+    image: nginx:alpine
+    container_name: vulnreport-nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - vulnreport
+
+networks:
+  vulnreport:
+    driver: bridge

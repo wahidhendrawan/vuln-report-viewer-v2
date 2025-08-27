@@ -15,11 +15,11 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
 
 WORKDIR /var/www/html
 
-# Install Laravel langsung di dalam container
+# Step 1: install Laravel ke container (fresh)
 RUN composer create-project laravel/laravel .
 
-# Copy controller, routes, views, css, js dari host (override Laravel default)
-COPY app/ /var/www/html/app/
+# Step 2: copy custom code (override file bawaan Laravel)
+COPY app/Http/Controllers/ /var/www/html/app/Http/Controllers/
 COPY routes/web.php /var/www/html/routes/web.php
 COPY resources/views/ /var/www/html/resources/views/
 COPY public/css/ /var/www/html/public/css/
